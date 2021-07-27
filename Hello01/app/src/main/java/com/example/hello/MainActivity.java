@@ -2,11 +2,16 @@ package com.example.hello;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hello.ui.login.LoginActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.w3c.dom.Text;
@@ -29,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText edit_01 = null;
 
+    private Button btn_next = null;
+    private Button btn_login = null;
+    private Button btn_calling = null;
     /*
     on* () method는 대체로 event Handler 들이다
     Create 동작이 실행될때 같이 동반하여 작동되는 Method
@@ -53,30 +61,66 @@ public class MainActivity extends AppCompatActivity {
 
         edit_01 = findViewById(R.id.edit_01);
 
+        btn_next = findViewById(R.id.btn_next);
+        btn_login = findViewById(R.id.btn_login);
+        btn_calling = findViewById(R.id.btn_calling);
+
+        // click event를 처리할 event Handler 선언하기
+        // interface를 사용하여 직접 객체를 생성하는 방법
+        // 전통자바에서는 interface를 impl 한 클래스를 작성하고
+        // 클래스를 사용하여 객체를 선언(생성, 초기화)하였는데
+        // interface를 직접 객체를 사용하는 용도로 활용하기
+        View.OnClickListener btn_click = new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                if(v.getId() == R.id.btn_login) {
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                } else if(v.getId() == R.id.btn_next) {
+
+                    /*
+                    intent(인텐트)
+                    Android에서 Activitiy를 부르는 다른 이름
+                    Actibify에 super parant
+
+                    새로운 Activity를 보여주는 절차
+                    1. Intent 클래스를 사용하여 인텐트 생성
+                    2. startActivity() method 호출하여 새로운 Activity로 화면 전환
+
+                    startActivity() 는 이미 준비된 method
+                     */
+                    Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                    startActivity(intent);
+                } else if(v.getId() == R.id.btn_calling) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:010-5118-3576"));
+                    startActivity(intent);
+                }
+
+            }
+        };
+
+        // 하나의 event handler를 생성하여
+        // 2개의 버튼을 동시에 적용하기
+        btn_next.setOnClickListener(btn_click);
+        btn_login.setOnClickListener(btn_click);
+        btn_calling.setOnClickListener(btn_click);
+
         txt1.setText("Cafe is BBBEEESSTT");
         txt2.setText("Lunch Time Soon!");
 
-//        txt2.setOnClickListener( (view)->{
-//            Toast.makeText(this,txt2.getText(),Toast.LENGTH_LONG).show();
-//        } );
         txt1.setOnClickListener( (view)->{
-//            Toast.makeText(this,"Cafe is Best",Toast.LENGTH_SHORT).show();
             String txt = edit_01.getText().toString();
             String msg = String.format("입력한 번호는 %s", txt);
             Snackbar.make(view,msg,Snackbar.LENGTH_SHORT).show();
         } );
 
-//        txt1.setOnClickListener( (view)->{
-//            Toast.makeText(this,txt1.getText(),Toast.LENGTH_LONG).show();
-//        } );
-//        txt2.setOnClickListener( (view)->{
-//            Toast.makeText(this,"Sleeping Time.. And Hungry",Toast.LENGTH_LONG).show();
-//        } );
         txt2.setOnClickListener( (view)->{
             String txt = edit_01.getText().toString();
             txt = "입력한 전화번호 " + txt;
             Snackbar.make(view,txt,Snackbar.LENGTH_LONG).show();
-//            Snackbar.make(view,txt2.getText(),Snackbar.LENGTH_INDEFINITE).show();
         } );
+
     }
 }

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">A-RE</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="main_home">빙글빙글 행성</string>
+    <string name="title_activity_my_page">FullscreenActivity</string>
+    <string name="title_activity_test">FullscreenActivity</string>
+</resources>

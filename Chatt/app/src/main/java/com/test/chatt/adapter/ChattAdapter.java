@@ -21,6 +21,20 @@ public class ChattAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private List<Chat> chatList;
 
     /*
+    외부에서 chat 데이터 아이템을 List로 추가하고
+    추가된 List는 RecyclerView를 통해서 화면에 다시 그려지게 될 것이다
+     */
+    public void addChatList(Chat chat) {
+
+        // 메세지를 리스트에 추가하기
+        chatList.add(chat);
+
+        // RecyclerView에게 chatList가 변화되었으니 다시 화면에 그려라 라고 지시하기
+        // chatList의 마지막 위치 값이 추가되었으니 다시 그려라
+        notifyItemInserted(chatList.size()-1);
+    }
+
+    /*
     RecyclerView가 화면에 그릴 데이터들을 전달받을 통로
     @param chatList
      */

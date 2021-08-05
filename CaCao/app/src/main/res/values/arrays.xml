@@ -1,0 +1,12 @@
+<resources>
+    <!-- Reply Preference -->
+    <string-array name="reply_entries">
+        <item>Message Mode</item>
+        <item>Vacation Mode</item>
+    </string-array>
+
+    <string-array name="reply_values">
+        <item>ON</item>
+        <item>OFF</item>
+    </string-array>
+</resources>

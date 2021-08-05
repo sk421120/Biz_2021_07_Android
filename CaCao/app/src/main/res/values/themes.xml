@@ -13,4 +13,20 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <!-- ActionBar를 Custom 하기 위한 Theme 선언하기 -->
+    <style name="Theme.Cacao.AppBarOverlay" parent="Theme.MaterialComponents.DayNight.DarkActionBar" />
+    <style name="Theme.Cacao.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--
+    MainActivity가 실행되면
+    화면 상단에 자동으로 ActionBar가 나타나는 데 자동으로 나타나는 ActionBar는 Custom 하기어려워서
+    자동 ActionBar를 감추고, 새로운 ActionBar를 만들어서 사용할 예정
+
+    기본 Activity 화면에서 자동으로 나타나는 ActionBar를 감추도록 Theme을 변경할 것이고 그 때 사용할 Theme을 여기에 지정
+     -->
+    <style name="Theme.CaCao.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 </resources>

@@ -16,17 +16,17 @@
         android:textColor="#ffc01f"
         android:text="NAME"
 
-        android:gravity="center_horizontal"
+        android:gravity="start"
         />
 
     <TextView
         android:id="@+id/item_msg"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:textColor="#ff8b66"
         android:background="@android:drawable/editbox_background"
-        android:backgroundTint="#e3ffec"
+
         android:text="MSG"
 
         android:gravity="center"

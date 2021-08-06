@@ -95,6 +95,7 @@ public class FullscreenActivity extends AppCompatActivity {
                     break;
             }
             return false;
+            
         }
     };
     private ActivityFullscreenBinding binding;

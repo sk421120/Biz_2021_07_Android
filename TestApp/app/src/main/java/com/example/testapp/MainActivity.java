@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -12,6 +13,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private TextView[] colors;
+    private View planet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,23 +22,13 @@ public class MainActivity extends AppCompatActivity {
 
         colors = new TextView[4];
 
-        colors[0] = findViewById(R.id.txt_color1);
-        colors[1] = findViewById(R.id.txt_color2);
-        colors[2] = findViewById(R.id.txt_color3);
-        colors[3] = findViewById(R.id.txt_color4);
+        createRandColor(colors);
 
-        float[] color = new float[3];
+        planet = findViewById(R.id.draw_planet);
 
-        for (int i =0; i < colors.length ; i++){
-            color = createRandColor();
-            int txt_color = Color.HSVToColor(color);
-//            colors[i].setText(String.format("%d",txt_color));
-//            colors[i].setText(color.toString());
-            colors[i].setTextColor( txt_color );
-            color = createRandColor();
-            txt_color = Color.HSVToColor(color);
-            colors[i].setBackgroundColor(txt_color);
-        }
+        planet.setOnClickListener(view -> {
+//            planet.color
+        });
 
     }
 
@@ -60,5 +52,25 @@ public class MainActivity extends AppCompatActivity {
         Log.d("v", String.format("%f",v));
 
         return hsv;
+    }
+
+    private void createRandColor(TextView[] colors) {
+        colors[0] = findViewById(R.id.txt_color1);
+        colors[1] = findViewById(R.id.txt_color2);
+        colors[2] = findViewById(R.id.txt_color3);
+        colors[3] = findViewById(R.id.txt_color4);
+
+        float[] color = new float[3];
+
+        for (int i =0; i < colors.length ; i++){
+            color = createRandColor();
+            int txt_color = Color.HSVToColor(color);
+//            colors[i].setText(String.format("%d",txt_color));
+//            colors[i].setText(color.toString());
+            colors[i].setTextColor( txt_color );
+            color = createRandColor();
+            txt_color = Color.HSVToColor(color);
+            colors[i].setBackgroundColor(txt_color);
+        }
     }
 }

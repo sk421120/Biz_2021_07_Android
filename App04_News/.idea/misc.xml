@@ -3,9 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/bizworks/AndProject/App_03_Library/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/bizworks/AndProject/App_03_Library/app/src/main/res/layout/book_item_view.xml" value="0.1" />
-        <entry key="..\:/bizworks/AndProject/App_03_Library/app/src/main/res/menu/main_toolbar_menu.xml" value="0.3712820512820513" />
+        <entry key="..\:/bizworks/AndProject/App04_News/app/src/main/res/layout/activity_main.xml" value="0.1" />
       </map>
     </option>
   </component>

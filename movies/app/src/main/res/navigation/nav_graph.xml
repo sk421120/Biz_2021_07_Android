@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/FirstFragment">
+<!--    최초로 실행된다는 의미 : app:startDestination="@id/FirstFragment"-->
+
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.callor.movies.FirstFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_first">
+<!--        다른 fragment를 열 때 데이터를 전달하기 위한 설정 -->
+        <argument
+            android:name="movie_name"
+            app:argType="string"
+            app:nullable="true"/>
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SettingsFragment"
+            app:destination="@id/settingsFragment" />
+<!--      FirstFragment_to_SettingsFragment가 실행되면 settingsFragment를 띄워달라  -->
+    </fragment>
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="com.callor.movies.SecondFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_second">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+
+        <!-- 다른 ...-->
+        <argument
+            android:name="movie_search"
+            app:argType="string"/>
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.callor.movies.SettingsFragment"
+        android:label="SettingsFragment" />
+</navigation>

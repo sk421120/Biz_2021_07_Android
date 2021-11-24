@@ -13,13 +13,13 @@ import com.callor.threedayday.databinding.ActivityMainBinding
 import com.callor.threedayday.databinding.FragmentLoginBinding
 import com.callor.threedayday.ui.login.LoginFragment
 
-class MainActivity() : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var loginBinding: FragmentLoginBinding
 
     public fun viewNav(status:Boolean) {
 //        val _binding = ActivityMainBinding.inflate(layoutInflater)
-        if(status) binding.navView.visibility = View.GONE
+        if(status) binding.navView.visibility = View.INVISIBLE
         else binding.navView.visibility = View.VISIBLE
     }
 

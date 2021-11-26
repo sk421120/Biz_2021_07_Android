@@ -15,6 +15,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.example.bottomnav.MainActivity
 import com.example.bottomnav.databinding.FragmentLoginBinding
 
 import com.example.bottomnav.R
@@ -27,6 +29,29 @@ class LoginFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    /*
+    MainActivity에 method를 만들고 BottomNav를 보이거나 감추는 코드를 실행하고 싶다
+
+    표준 코드에서는 다음과 같이 MainActivity의 method를 호출할 때 객체를 생성하고 method를 호출할 수 있다
+
+    val mainActivity = MainActivity() :: Kotlin
+    MainActivity mainActivity = new MainActity() :: Java
+
+    mainActivity.setBottomNav(true)
+    mainActivity.setBottomNav(false)
+
+    Android에서 Activity는 절대 직접 핸들링할 수 없다
+
+    Java(Kotlin)의 callback pattern을 사용
+    1. 호출할 곳에서 (중첩, 포함) interface를 선언한다
+    2. MainActivity에서 이 interface를 impl하고
+    3. method 코드를 구현한다
+    4. 여기에서 Main method를 호출한다
+     */
+    public interface BottomNav {
+        fun setBottomNav(status:Boolean)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +68,11 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
+
+//        bottomNav 감추기
+//        mainActivity 의 Context 불러오기
+        val mainActivity = activity as MainActivity
+        mainActivity.setBottomNav(false)
 
         val usernameEditText = binding.username
         val passwordEditText = binding.password
@@ -110,6 +140,10 @@ class LoginFragment : Fragment() {
                 passwordEditText.text.toString()
             )
         }
+
+        binding.join.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_login_to_navigation_home)
+        }
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
@@ -125,6 +159,8 @@ class LoginFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        val mainActivity = activity as MainActivity
+        mainActivity.setBottomNav(true)
         super.onDestroyView()
         _binding = null
     }

@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     android:paddingTop="?attr/actionBarSize">
 
+    <!--
+    constrainLayout 으로 감싸진 view component 중에서는
+    layout_width를 0dp로 설정하고
+    layout_constraintLeft_toLeftOf 와
+    layout_constraintRight_toRightOf 를
+    `parent`로 설정하면
+    화면폭만큼 가득 채워진 형태의 view과 그려진다.
+    -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="0dp"

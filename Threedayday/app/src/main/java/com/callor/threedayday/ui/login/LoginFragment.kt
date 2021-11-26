@@ -31,25 +31,26 @@ class LoginFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    public interface BottomNav {
+        fun setBottomNav(status: Boolean)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val mainAct = activity as MainActivity
-        mainAct.viewNav(true)
-
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
+
+        val mainAct = activity as MainActivity
+        mainAct.setBottomNav(false)
 
         val usernameEditText = binding.username
         val passwordEditText = binding.password
@@ -113,14 +114,17 @@ class LoginFragment : Fragment() {
 
         loginButton.setOnClickListener {
             loadingProgressBar.visibility = View.VISIBLE
-            loginViewModel.login(
+            val result = loginViewModel.login(
                 usernameEditText.text.toString(),
                 passwordEditText.text.toString()
             )
+            if (result) {
+                findNavController().navigate(R.id.action_loginFragment_to_navigation_home)
+            }
         }
 
-        binding.btnJoin.setOnClickListener{
-            findNavController().navigate(R.id.action_Test)
+        binding.btnJoin.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_login_to_joinFragment)
         }
     }
 
@@ -137,6 +141,8 @@ class LoginFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        val mainActivity = activity as MainActivity
+        mainActivity.setBottomNav(true)
         super.onDestroyView()
         _binding = null
     }

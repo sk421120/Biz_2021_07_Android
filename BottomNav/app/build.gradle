@@ -31,6 +31,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+//    activity 를 binding 방식으로 사용하기 위한 설정
     buildFeatures {
         viewBinding true
     }

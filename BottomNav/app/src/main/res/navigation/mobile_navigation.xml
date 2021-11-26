@@ -33,4 +33,7 @@
             android:id="@+id/action_navigation_login_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
+    <action
+        android:id="@+id/action_global_navigation_login"
+        app:destination="@id/navigation_login" />
 </navigation>

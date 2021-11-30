@@ -8,6 +8,7 @@ import com.callor.threedayday.data.LoginRepository
 import com.callor.threedayday.data.Result
 
 import com.callor.threedayday.R
+import com.callor.threedayday.data.model.LoggedInUser
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
@@ -53,5 +54,10 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
         return password.length > 5
+    }
+
+//    public method viewUser
+    fun viewUser(): LoggedInUser? {
+        return loginRepository.user
     }
 }

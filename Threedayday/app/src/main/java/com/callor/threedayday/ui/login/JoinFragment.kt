@@ -1,11 +1,15 @@
 package com.callor.threedayday.ui.login
 
+import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.callor.threedayday.MainActivity
 import com.callor.threedayday.R
+import com.callor.threedayday.service.UserFile
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,6 +39,12 @@ class JoinFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+        val mainAct = activity as MainActivity
+
+        val userFile = mainAct.getFile()
+
+        Log.d("join path",userFile.pathReturn())
         return inflater.inflate(R.layout.fragment_join, container, false)
     }
 

@@ -41,10 +41,10 @@ class HomeFragment : Fragment() {
         val textView: TextView = binding.textHome
         val id: TextView = binding.textId
         val pw: TextView = binding.textPw
-        val loggedInUser = loginViewModel.viewUser()
+//        val loggedInUser = loginViewModel.viewUser()
 //        if (loggedInUser)
-        id.text = loggedInUser?.userId
-        pw.text = loggedInUser?.nikname.toString()
+//        id.text = loggedInUser?.userId
+//        pw.text = loggedInUser?.nikname.toString()
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })

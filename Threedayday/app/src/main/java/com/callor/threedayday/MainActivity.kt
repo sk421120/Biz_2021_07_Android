@@ -1,20 +1,26 @@
 package com.callor.threedayday
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.callor.threedayday.data.model.User
 import com.callor.threedayday.databinding.ActivityMainBinding
-import com.callor.threedayday.databinding.FragmentLoginBinding
+import com.callor.threedayday.service.UserFile
 import com.callor.threedayday.ui.login.LoginFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity(), LoginFragment.BottomNav {
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var userFile:UserFile
+
+//    private var userLogFile:String? = "";
 
 //    public fun viewNav(status: Boolean) {
 //        val _binding = ActivityMainBinding.inflate(layoutInflater)
@@ -42,10 +48,18 @@ class MainActivity : AppCompatActivity(), LoginFragment.BottomNav {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        userFile = UserFile(filesDir.path)
+
 //        if(login["isLogin"] == false) {
             navController.navigate(R.id.action_global_navigation_login)
 //        }
 
+        Log.d("file path", filesDir.path)
+
+    }
+
+    fun getFile():UserFile{
+        return userFile
     }
 
     override fun setBottomNav(status: Boolean) {

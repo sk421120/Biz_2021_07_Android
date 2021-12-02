@@ -52,6 +52,8 @@ class LoginFragment : Fragment() {
         val mainAct = activity as MainActivity
         mainAct.setBottomNav(false)
 
+        val userFile = mainAct.getFile()
+
         val usernameEditText = binding.username
         val passwordEditText = binding.password
         val loginButton = binding.btnLogin
@@ -120,6 +122,7 @@ class LoginFragment : Fragment() {
                 passwordEditText.text.toString()
             )
             if (result) {
+                userFile.writeFile("memo","test",usernameEditText.text.toString())
                 findNavController().navigate(R.id.action_loginFragment_to_navigation_home)
             }
         }

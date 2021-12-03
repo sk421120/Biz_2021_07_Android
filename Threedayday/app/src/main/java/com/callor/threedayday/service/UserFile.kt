@@ -9,11 +9,26 @@ class UserFile(path:String) {
     private var dirPath:String = ""
 
     init {
-        Log.d("user file path",path)
+//        Log.d("user file path",path)
         dirPath= path
     }
 
-    fun readFile(path: String): String {
+    fun userLog():Boolean {
+        var checkUser = true
+
+        val fileLog = readFile(dirPath)
+
+        Log.d("user file log", fileLog)
+
+        if(fileLog == null || fileLog == "") {
+            checkUser = false
+            Log.d("user file log", "No log")
+        }
+
+        return checkUser
+    }
+
+    private fun readFile(path: String): String {
         val fullPath = File(dirPath + "/" + path)
         if (!fullPath.exists()) return ""
 

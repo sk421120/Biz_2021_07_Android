@@ -50,8 +50,13 @@ class MainActivity : AppCompatActivity(), LoginFragment.BottomNav {
 
         userFile = UserFile(filesDir.path)
 
-//        if(login["isLogin"] == false) {
+        Log.d("userLog ",userFile.userLog().toString())
+//        if (userFile.userLog())
+//            navController.navigate(R.id.navigation_home)
+//        else
             navController.navigate(R.id.action_global_navigation_login)
+//        if(login["isLogin"] == false) {
+//            navController.navigate(R.id.action_global_navigation_login)
 //        }
 
         Log.d("file path", filesDir.path)

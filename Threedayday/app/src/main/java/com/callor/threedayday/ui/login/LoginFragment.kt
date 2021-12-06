@@ -127,9 +127,6 @@ class LoginFragment : Fragment() {
             }
         }
 
-        binding.btnJoin.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_login_to_joinFragment)
-        }
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {

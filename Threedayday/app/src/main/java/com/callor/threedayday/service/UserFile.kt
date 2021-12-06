@@ -16,7 +16,7 @@ class UserFile(path:String) {
     fun userLog():Boolean {
         var checkUser = true
 
-        val fileLog = readFile(dirPath)
+        val fileLog = readFile("memo/test")
 
         Log.d("user file log", fileLog)
 
@@ -65,5 +65,10 @@ class UserFile(path:String) {
         return dirPath
     }
 
+    fun remove(path:String) {
+        var file = File(dirPath+"/"+path)
+        Log.d("file path",file.path)
+//        file.delete()
+    }
 
 }

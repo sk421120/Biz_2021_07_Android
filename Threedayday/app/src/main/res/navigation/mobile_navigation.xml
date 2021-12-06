@@ -15,9 +15,6 @@
             android:id="@+id/action_loginFragment_to_navigation_home"
             app:destination="@id/navigation_home"
             app:enterAnim="@anim/nav_default_enter_anim" />
-        <action
-            android:id="@+id/action_navigation_login_to_joinFragment"
-            app:destination="@id/joinFragment" />
     </fragment>
 
     <fragment
@@ -46,14 +43,5 @@
     <action
         android:id="@+id/action_global_navigation_login"
         app:destination="@id/navigation_login" />
-    <fragment
-        android:id="@+id/joinFragment"
-        android:name="com.callor.threedayday.ui.login.JoinFragment"
-        android:label="Join"
-        tools:layout="@layout/fragment_join">
-        <action
-            android:id="@+id/action_joinFragment_to_navigation_login"
-            app:destination="@id/navigation_login" />
-    </fragment>
 
 </navigation>

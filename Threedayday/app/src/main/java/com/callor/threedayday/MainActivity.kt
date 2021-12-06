@@ -20,14 +20,6 @@ class MainActivity : AppCompatActivity(), LoginFragment.BottomNav {
 
     private lateinit var userFile:UserFile
 
-//    private var userLogFile:String? = "";
-
-//    public fun viewNav(status: Boolean) {
-//        val _binding = ActivityMainBinding.inflate(layoutInflater)
-//        if (status) binding.navView.visibility = View.INVISIBLE
-//        else binding.navView.visibility = View.VISIBLE
-//    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -50,10 +42,10 @@ class MainActivity : AppCompatActivity(), LoginFragment.BottomNav {
 
         userFile = UserFile(filesDir.path)
 
-        Log.d("userLog ",userFile.userLog().toString())
-//        if (userFile.userLog())
-//            navController.navigate(R.id.navigation_home)
-//        else
+//        Log.d("userLog ",userFile.userLog().toString())
+        if (userFile.userLog())
+            navController.navigate(R.id.navigation_home)
+        else
             navController.navigate(R.id.action_global_navigation_login)
 //        if(login["isLogin"] == false) {
 //            navController.navigate(R.id.action_global_navigation_login)

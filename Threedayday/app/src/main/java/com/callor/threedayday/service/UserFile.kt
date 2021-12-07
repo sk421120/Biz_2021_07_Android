@@ -68,7 +68,7 @@ class UserFile(path:String) {
     fun remove(path:String) {
         var file = File(dirPath+"/"+path)
         Log.d("file path",file.path)
-//        file.delete()
+        file.delete()
     }
 
 }

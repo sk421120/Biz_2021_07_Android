@@ -15,6 +15,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import com.callor.threedayday.MainActivity
 import com.callor.threedayday.databinding.FragmentLoginBinding
@@ -46,6 +48,12 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val callback =
+            requireActivity()?.onBackPressedDispatcher?.addCallback(onBackPressedCallback)
+
+
+
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
@@ -129,6 +137,14 @@ class LoginFragment : Fragment() {
 
     }
 
+    private val onBackPressedCallback = object :OnBackPressedCallback(true){
+        override fun handleOnBackPressed() {
+//            TODO("Not yet implemented")
+//            원하는 작업하기
+//            onDestroyView()
+       }
+    }
+
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome) + model.displayName
         // TODO : initiate successful logged in experience
@@ -147,4 +163,7 @@ class LoginFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
+
 }

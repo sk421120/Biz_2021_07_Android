@@ -63,4 +63,10 @@ class MainActivity : AppCompatActivity(), LoginFragment.BottomNav {
         binding.navView.visibility = if(status) View.VISIBLE else View.GONE
     }
 
+    override fun onDestroy() {
+        Log.d("byebye","bye")
+        super.onDestroy()
+        Log.d("byebye","here?")
+        userFile.remove("memo/test")
+    }
 }

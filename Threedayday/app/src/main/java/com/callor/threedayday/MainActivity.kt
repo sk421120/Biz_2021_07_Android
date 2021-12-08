@@ -15,7 +15,7 @@ import com.callor.threedayday.ui.login.LoginFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlin.math.log
 
-class MainActivity : AppCompatActivity(), LoginFragment.BottomNav {
+class MainActivity : AppCompatActivity(), LoginFragment.BottomNav, LoginFragment.BackPressed {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var userFile:UserFile
@@ -53,10 +53,21 @@ class MainActivity : AppCompatActivity(), LoginFragment.BottomNav {
 
         Log.d("file path", filesDir.path)
 
+//        supportFragmentManager.remo
+
     }
 
     fun getFile():UserFile{
         return userFile
+    }
+
+//    override fun onBackPressed() {
+//        super.onBackPressed()
+//    }
+
+    override fun setBackPressButton() {
+//        this.onBackPressed()
+        finish()
     }
 
     override fun setBottomNav(status: Boolean) {

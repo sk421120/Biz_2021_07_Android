@@ -37,6 +37,10 @@ class LoginFragment : Fragment() {
         fun setBottomNav(status: Boolean)
     }
 
+    public interface BackPressed {
+        fun setBackPressButton()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,16 +53,18 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val callback =
-            requireActivity()?.onBackPressedDispatcher?.addCallback(onBackPressedCallback)
-
-
-
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
         val mainAct = activity as MainActivity
         mainAct.setBottomNav(false)
+
+        val callback =
+            requireActivity()?.onBackPressedDispatcher?.addCallback(){
+                mainAct.setBackPressButton()
+            }
+
+        callback.remove()
 
         val userFile = mainAct.getFile()
 
@@ -135,14 +141,6 @@ class LoginFragment : Fragment() {
             }
         }
 
-    }
-
-    private val onBackPressedCallback = object :OnBackPressedCallback(true){
-        override fun handleOnBackPressed() {
-//            TODO("Not yet implemented")
-//            원하는 작업하기
-//            onDestroyView()
-       }
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {

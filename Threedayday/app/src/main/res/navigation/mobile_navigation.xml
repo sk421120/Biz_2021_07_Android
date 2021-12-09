@@ -28,4 +28,9 @@
         android:name="com.callor.threedayday.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/intro"
+        android:name="com.callor.threedayday.ui.Intro"
+        android:label="fragment_intro"
+        tools:layout="@layout/fragment_intro" />
 </navigation>

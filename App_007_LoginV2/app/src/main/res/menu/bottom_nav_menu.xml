@@ -22,4 +22,10 @@
         android:id="@+id/navigation_login"
         android:title="@string/title_login" />
 
+    <item
+        android:visible="false"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:id="@id/navigation_intro"
+        android:title="Intro"/>
+
 </menu>

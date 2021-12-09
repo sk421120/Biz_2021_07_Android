@@ -21,4 +21,10 @@
         android:icon="@android:drawable/ic_menu_revert"
         android:title="Login" />
 
+    <item
+        android:id="@+id/navigation_intro"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:visible="false"
+        android:title="Intro" />
+
 </menu>

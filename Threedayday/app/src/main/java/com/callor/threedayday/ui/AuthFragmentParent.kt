@@ -40,7 +40,7 @@ open class AuthFragmentParent : Fragment() {
 //        navigation_login 메뉴를 클릭한 것처럼
 //        fragment 를 다른 fragment 로 redirection 하기
         if (userId == null) {
-            findNavController().navigate(R.id.navigation_login)
+            findNavController().navigate(R.id.navigation_intro)
         }
     }
 

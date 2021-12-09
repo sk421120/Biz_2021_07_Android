@@ -12,7 +12,7 @@ import com.callor.login.R
 import com.callor.login.databinding.FragmentHomeBinding
 import com.callor.login.ui.AuthFragmentParents
 
-class HomeFragment : Fragment() {
+class HomeFragment : AuthFragmentParents() {
 
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null

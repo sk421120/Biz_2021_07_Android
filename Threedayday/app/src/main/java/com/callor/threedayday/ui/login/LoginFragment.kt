@@ -1,9 +1,5 @@
 package com.callor.threedayday.ui.login
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.annotation.StringRes
-import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,22 +7,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
+import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.callor.threedayday.MainActivity
-import com.callor.threedayday.databinding.FragmentLoginBinding
-
 import com.callor.threedayday.R
-import com.callor.threedayday.databinding.ActivityMainBinding
+import com.callor.threedayday.data.LoginDataSource
+import com.callor.threedayday.data.LoginRepository
+import com.callor.threedayday.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
 
-    private lateinit var loginViewModel: LoginViewModel
+    //    private lateinit var loginViewModel: LoginViewModel
+    private val loginViewModel: LoginViewModel by activityViewModels {
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T = LoginViewModel(
+                LoginRepository(dataSource = LoginDataSource())
+            ) as T
+        }
+    }
     private var _binding: FragmentLoginBinding? = null
 
     // This property is only valid between onCreateView and
@@ -46,6 +51,9 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val mainAct = activity as MainActivity
+        mainAct.setBottomNav(false)
+
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -53,20 +61,17 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
-            .get(LoginViewModel::class.java)
+//        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
+//            .get(LoginViewModel::class.java)
 
-        val mainAct = activity as MainActivity
-        mainAct.setBottomNav(false)
+//        val callback =
+//            requireActivity()?.onBackPressedDispatcher?.addCallback() {
+//                mainAct.setBackPressButton()
+//            }
+//
+//        callback.remove()
 
-        val callback =
-            requireActivity()?.onBackPressedDispatcher?.addCallback(){
-                mainAct.setBackPressButton()
-            }
-
-        callback.remove()
-
-        val userFile = mainAct.getFile()
+//        val userFile = mainAct.getFile()
 
         val usernameEditText = binding.username
         val passwordEditText = binding.password
@@ -95,8 +100,8 @@ class LoginFragment : Fragment() {
                     showLoginFailed(it)
                 }
                 loginResult.success?.let {
-//                    login success to homeFragment
-
+//                    popup
+                    updateUiWithUser(it)
                 }
             })
 
@@ -131,14 +136,15 @@ class LoginFragment : Fragment() {
 
         loginButton.setOnClickListener {
             loadingProgressBar.visibility = View.VISIBLE
-            val result = loginViewModel.login(
+//            val result = loginViewModel.login(
+            loginViewModel.login(
                 usernameEditText.text.toString(),
                 passwordEditText.text.toString()
             )
-            if (result) {
-                userFile.writeFile("memo","test",usernameEditText.text.toString())
-                findNavController().navigate(R.id.action_loginFragment_to_navigation_home)
-            }
+//            if (result) {
+//                userFile.writeFile("memo", "test", usernameEditText.text.toString())
+//                findNavController().navigate(R.id.action_loginFragment_to_navigation_home)
+//            }
         }
 
     }
@@ -146,8 +152,9 @@ class LoginFragment : Fragment() {
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome) + model.displayName
         // TODO : initiate successful logged in experience
-        val appContext = context?.applicationContext ?: return
+//        val appContext = context?.applicationContext ?: return
 //        Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
+        findNavController().popBackStack()
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
@@ -156,12 +163,11 @@ class LoginFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        super.onDestroyView()
+
         val mainActivity = activity as MainActivity
         mainActivity.setBottomNav(true)
-        super.onDestroyView()
+
         _binding = null
     }
-
-
-
 }

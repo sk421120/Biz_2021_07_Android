@@ -15,7 +15,7 @@ import com.callor.threedayday.ui.login.LoginFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlin.math.log
 
-class MainActivity : AppCompatActivity(), LoginFragment.BottomNav, LoginFragment.BackPressed {
+class MainActivity : AppCompatActivity(), LoginFragment.BottomNav {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var userFile:UserFile
@@ -29,7 +29,8 @@ class MainActivity : AppCompatActivity(), LoginFragment.BottomNav, LoginFragment
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val menuSets = setOf(
-            R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+            R.id.navigation_home, R.id.navigation_dashboard,
+            R.id.navigation_notifications, R.id.navigation_login
         )
 
         // Passing each menu ID as a set of Ids because each
@@ -43,17 +44,15 @@ class MainActivity : AppCompatActivity(), LoginFragment.BottomNav, LoginFragment
         userFile = UserFile(filesDir.path)
 
 //        Log.d("userLog ",userFile.userLog().toString())
-        if (userFile.userLog())
-            navController.navigate(R.id.navigation_home)
-        else
-            navController.navigate(R.id.action_global_navigation_login)
+//        if (userFile.userLog())
+//            navController.navigate(R.id.navigation_home)
+//        else
+//            navController.navigate(R.id.action_global_navigation_login)
 //        if(login["isLogin"] == false) {
 //            navController.navigate(R.id.action_global_navigation_login)
 //        }
 
         Log.d("file path", filesDir.path)
-
-//        supportFragmentManager.remo
 
     }
 
@@ -65,10 +64,10 @@ class MainActivity : AppCompatActivity(), LoginFragment.BottomNav, LoginFragment
 //        super.onBackPressed()
 //    }
 
-    override fun setBackPressButton() {
+//    override fun setBackPressButton() {
 //        this.onBackPressed()
-        finish()
-    }
+//        finish()
+//    }
 
     override fun setBottomNav(status: Boolean) {
         binding.navView.visibility = if(status) View.VISIBLE else View.GONE

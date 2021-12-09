@@ -13,9 +13,10 @@ import com.callor.threedayday.data.LoginRepository
 import com.callor.threedayday.data.model.LoggedInUser
 import com.callor.threedayday.databinding.ActivityMainBinding
 import com.callor.threedayday.databinding.FragmentHomeBinding
+import com.callor.threedayday.ui.AuthFragmentParent
 import com.callor.threedayday.ui.login.LoginViewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : AuthFragmentParent() {
 
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null

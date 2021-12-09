@@ -9,24 +9,13 @@
         android:id="@+id/navigation_login"
         android:name="com.callor.threedayday.ui.login.LoginFragment"
         android:label="Login"
-        tools:layout="@layout/fragment_login">
-
-        <action
-            android:id="@+id/action_loginFragment_to_navigation_home"
-            app:destination="@id/navigation_home"
-            app:enterAnim="@anim/nav_default_enter_anim" />
-    </fragment>
+        tools:layout="@layout/fragment_login"></fragment>
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.callor.threedayday.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_navigation_home_to_loginFragment"
-            app:destination="@id/navigation_login"
-            app:exitAnim="@anim/nav_default_exit_anim" />
-    </fragment>
+        tools:layout="@layout/fragment_home"></fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -39,9 +28,4 @@
         android:name="com.callor.threedayday.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
-
-    <action
-        android:id="@+id/action_global_navigation_login"
-        app:destination="@id/navigation_login" />
-
 </navigation>

@@ -12,24 +12,28 @@ import com.callor.threedayday.data.model.LoggedInUser
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
+//class LoginViewModel() : ViewModel() {
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
 
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
-    fun login(username: String, password: String): Boolean {
+    //    fun login(username: String, password: String): Boolean {
+    fun login(username: String, password: String) {
         // can be launched in a separate asynchronous job
         val result = loginRepository.login(username, password)
 
         if (result is Result.Success) {
             _loginResult.value =
                 LoginResult(success = LoggedInUserView(displayName = result.data.nikname))
-            return true
+//            return true
         } else {
             _loginResult.value = LoginResult(error = R.string.login_failed)
-            return false
+//            return false
         }
+
+//        val result = LoginResult(success = LoggedInUserView(username))
     }
 
     fun loginDataChanged(username: String, password: String) {
@@ -56,8 +60,8 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         return password.length > 5
     }
 
-//    public method viewUser
-    fun viewUser(): LoggedInUser? {
-        return loginRepository.user
-    }
+    //    public method viewUser
+//    fun viewUser(): LoggedInUser? {
+//        return loginRepository.user
+//    }
 }

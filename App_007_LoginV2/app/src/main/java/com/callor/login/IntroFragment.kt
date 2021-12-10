@@ -28,7 +28,7 @@ class IntroFragment : Fragment() {
 
         Handler().postDelayed({
             findNavController().navigate(R.id.navigation_home)
-        }, 1500)
+        }, 2000)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)

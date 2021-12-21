@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.callor.threedayday.MainActivity
 import com.callor.threedayday.R
 import com.callor.threedayday.data.LoginRepository
 import com.callor.threedayday.data.model.LoggedInUser
@@ -20,9 +21,6 @@ class HomeFragment : AuthFragmentParent() {
 
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
-    private lateinit var loginViewModel: LoginViewModel
-
-//    private lateinit var mainBinding: ActivityMainBinding
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -39,13 +37,11 @@ class HomeFragment : AuthFragmentParent() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        val mainAct = activity as MainActivity
+        mainAct?.setBottomNav(true)
+
         val textView: TextView = binding.textHome
-        val id: TextView = binding.textId
-        val pw: TextView = binding.textPw
-//        val loggedInUser = loginViewModel.viewUser()
-//        if (loggedInUser)
-//        id.text = loggedInUser?.userId
-//        pw.text = loggedInUser?.nikname.toString()
+
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })

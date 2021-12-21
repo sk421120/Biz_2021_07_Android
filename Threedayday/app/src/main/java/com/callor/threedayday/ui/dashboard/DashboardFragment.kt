@@ -10,8 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.callor.threedayday.R
 import com.callor.threedayday.databinding.FragmentDashboardBinding
+import com.callor.threedayday.ui.AuthFragmentParent
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : AuthFragmentParent() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
     private var _binding: FragmentDashboardBinding? = null

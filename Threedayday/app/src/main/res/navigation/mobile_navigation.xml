@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
-
-    <fragment
-        android:id="@+id/navigation_login"
-        android:name="com.callor.threedayday.ui.login.LoginFragment"
-        android:label="Login"
-        tools:layout="@layout/fragment_login"></fragment>
+    app:startDestination="@+id/navigation_intro">
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.callor.threedayday.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home"></fragment>
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.callor.threedayday.ui.login.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -28,9 +28,15 @@
         android:name="com.callor.threedayday.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
     <fragment
-        android:id="@+id/intro"
-        android:name="com.callor.threedayday.ui.Intro"
+        android:id="@+id/navigation_intro"
+        android:name="com.callor.threedayday.ui.IntroFragment"
         android:label="fragment_intro"
-        tools:layout="@layout/fragment_intro" />
+        tools:layout="@layout/fragment_intro">
+
+        <action
+            android:id="@+id/action_navigation_intro_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 </navigation>

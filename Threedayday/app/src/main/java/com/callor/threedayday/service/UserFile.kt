@@ -8,6 +8,8 @@ class UserFile(path:String) {
 
     private var dirPath:String = ""
 
+    var userId:String? = null
+
     init {
 //        Log.d("user file path",path)
         dirPath= path
@@ -16,11 +18,13 @@ class UserFile(path:String) {
     fun userLog():Boolean {
         var checkUser = true
 
-        val fileLog = readFile("memo/test")
+//        val fileLog = readFile("memo/test")
+         userId = readFile("memo/test")
 
-        Log.d("user file log", fileLog)
+//        Log.d("user file log", fileLog)
 
-        if(fileLog == null || fileLog == "") {
+//        if(fileLog == null || fileLog == "") {
+        if(userId == null || userId == "") {
             checkUser = false
             Log.d("user file log", "No log")
         }

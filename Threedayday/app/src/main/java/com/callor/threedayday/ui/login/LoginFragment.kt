@@ -33,25 +33,19 @@ class LoginFragment : Fragment() {
     }
     private var _binding: FragmentLoginBinding? = null
 
+    private var mainAct : MainActivity? = null
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
-    public interface BottomNav {
-        fun setBottomNav(status: Boolean)
-    }
-
-    public interface BackPressed {
-        fun setBackPressButton()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val mainAct = activity as MainActivity
-        mainAct.setBottomNav(false)
+        mainAct = activity as MainActivity
+//        mainAct.setBottomNav(false)
 
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
@@ -60,17 +54,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
-//            .get(LoginViewModel::class.java)
-
-//        val callback =
-//            requireActivity()?.onBackPressedDispatcher?.addCallback() {
-//                mainAct.setBackPressButton()
-//            }
-//
-//        callback.remove()
-
-//        val userFile = mainAct.getFile()
+        val userFile = mainAct?.getFile()
 
         val usernameEditText = binding.username
         val passwordEditText = binding.password
@@ -99,8 +83,7 @@ class LoginFragment : Fragment() {
                     showLoginFailed(it)
                 }
                 loginResult.success?.let {
-//                    popup
-                    updateUiWithUser(it)
+                    findNavController().popBackStack()
                 }
             })
 
@@ -135,25 +118,16 @@ class LoginFragment : Fragment() {
 
         loginButton.setOnClickListener {
             loadingProgressBar.visibility = View.VISIBLE
-//            val result = loginViewModel.login(
-            loginViewModel.login(
+            val result = loginViewModel.login(
+//            loginViewModel.login(
                 usernameEditText.text.toString(),
                 passwordEditText.text.toString()
             )
-//            if (result) {
-//                userFile.writeFile("memo", "test", usernameEditText.text.toString())
-//                findNavController().navigate(R.id.action_loginFragment_to_navigation_home)
-//            }
+            if (result) {
+                userFile?.writeFile("memo", "test", usernameEditText.text.toString())
+            }
         }
 
-    }
-
-    private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome) + model.displayName
-        // TODO : initiate successful logged in experience
-//        val appContext = context?.applicationContext ?: return
-//        Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
-        findNavController().popBackStack()
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
@@ -163,9 +137,6 @@ class LoginFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-
-        val mainActivity = activity as MainActivity
-        mainActivity.setBottomNav(true)
 
         _binding = null
     }

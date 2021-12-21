@@ -6,14 +6,16 @@
         <entry key="..\:/bizworks/AndProject/Threedayday/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.1" />
         <entry key="..\:/bizworks/AndProject/Threedayday/app/src/main/res/layout-w936dp/activity_login.xml" value="0.1" />
         <entry key="..\:/bizworks/AndProject/Threedayday/app/src/main/res/layout/activity_login.xml" value="0.1" />
-        <entry key="..\:/bizworks/AndProject/Threedayday/app/src/main/res/layout/activity_main.xml" value="0.10739614994934144" />
+        <entry key="..\:/bizworks/AndProject/Threedayday/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/bizworks/AndProject/Threedayday/app/src/main/res/layout/fragment_blank.xml" value="0.13768115942028986" />
         <entry key="..\:/bizworks/AndProject/Threedayday/app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
         <entry key="..\:/bizworks/AndProject/Threedayday/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/bizworks/AndProject/Threedayday/app/src/main/res/layout/fragment_intro.xml" value="0.18515704154002027" />
         <entry key="..\:/bizworks/AndProject/Threedayday/app/src/main/res/layout/fragment_join.xml" value="0.18333333333333332" />
         <entry key="..\:/bizworks/AndProject/Threedayday/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/bizworks/AndProject/Threedayday/app/src/main/res/layout/fragment_notifications.xml" value="0.1" />
         <entry key="..\:/bizworks/AndProject/Threedayday/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+        <entry key="..\:/bizworks/AndProject/Threedayday/app/src/main/res/xml/root_preferences.xml" value="0.18515704154002027" />
         <entry key="..\:/bizworks/Android/Threedayday/app/src/main/res/layout/fragment_intro.xml" value="0.1" />
         <entry key="..\:/bizworks/Android/Threedayday/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
       </map>

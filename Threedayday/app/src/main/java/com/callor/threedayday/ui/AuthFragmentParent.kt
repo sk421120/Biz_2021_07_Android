@@ -8,6 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.callor.threedayday.MainActivity
 import com.callor.threedayday.R
 import com.callor.threedayday.data.LoginDataSource
 import com.callor.threedayday.data.LoginRepository
@@ -31,16 +32,24 @@ open class AuthFragmentParent : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val userId = loginViewModel.loginResult.value?.success?.displayName
+//        val userId = loginViewModel.loginResult.value?.success?.displayName
 
 //        userId 가 null( ?: ) 이면 noo 이라고 출력
 //        null 이 아니면 userId 값을 출력
-        Log.d("Author", userId ?: "Noooo")
+//        Log.d("Author", userId ?: "Noooo")
 
 //        navigation_login 메뉴를 클릭한 것처럼
 //        fragment 를 다른 fragment 로 redirection 하기
-        if (userId == null) {
-            findNavController().navigate(R.id.navigation_intro)
+//        if (userId == null) {
+//            findNavController().navigate(R.id.navigation_intro)
+//        }
+
+        val mainAct = activity as MainActivity
+        val userFile = mainAct.getFile()
+
+        if (!userFile.userLog()) {
+            mainAct.setBottomNav(false)
+            findNavController().navigate(R.id.navigation_login)
         }
     }
 

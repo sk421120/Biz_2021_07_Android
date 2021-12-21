@@ -17,14 +17,8 @@
         android:title="@string/title_notifications" />
 
     <item
-        android:id="@+id/navigation_login"
-        android:icon="@android:drawable/ic_menu_revert"
-        android:title="Login" />
-
-    <item
         android:id="@+id/navigation_intro"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:visible="false"
-        android:title="Intro" />
+        android:title="Intro"
+        android:visible="false"/>
 
 </menu>

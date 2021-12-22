@@ -1,13 +1,14 @@
 package com.callor.threedayday.ui.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.callor.threedayday.MainActivity
 import com.callor.threedayday.R
 import com.callor.threedayday.data.LoginRepository
@@ -42,11 +43,39 @@ class HomeFragment : AuthFragmentParent() {
 
         val textView: TextView = binding.textHome
 
+//        setHasOptionsMenu(true)
+
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
     }
+
+    /*
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater){
+//        inflater.inflate(R.menu.top_nav_menu, menu)
+        inflater.inflate(R.menu.top_nav_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return super.onOptionsItemSelected(item)
+        return when(item.itemId) {
+            R.id.setting -> {
+//                findNavController().navigate(R.id.navigation_setting)
+                Log.d("setting",item.toString())
+                true
+            }
+            R.id.logout -> {
+//                findNavController().navigate(R.id.navigation_login)
+                Log.d("logout",item.toString())
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+     */
 
     override fun onDestroyView() {
         super.onDestroyView()

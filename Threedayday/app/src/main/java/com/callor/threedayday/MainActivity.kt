@@ -1,9 +1,12 @@
 package com.callor.threedayday
 
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.callor.threedayday.databinding.ActivityMainBinding
@@ -16,6 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var userFile: UserFile
 
+    private lateinit var navController:NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -24,7 +29,8 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+//        val navController = findNavController()
+        navController = findNavController(R.id.nav_host_fragment_activity_main)
 //        val menuSets = setOf(
 //            R.id.navigation_home, R.id.navigation_dashboard,
 //            R.id.navigation_notifications, R.id.navigation_login
@@ -36,6 +42,10 @@ class MainActivity : AppCompatActivity() {
 //            menuSets
 //        )
 //        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
         navView.setupWithNavController(navController)
 
         userFile = UserFile(filesDir.path)
@@ -43,9 +53,27 @@ class MainActivity : AppCompatActivity() {
 //        Log.d("file path", filesDir.path)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_nav_menu, menu)
+//        return super.onCreateOptionsMenu(menu)
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val setting_item:Int = item.itemId
-        return super.onOptionsItemSelected(item)
+//        return super.onOptionsItemSelected(item)
+        when(item?.itemId){
+            R.id.setting -> {
+//                Toast.makeText(applicationContext, "세팅", Toast.LENGTH_SHORT).show()
+                navController.navigate(R.id.navigation_setting)
+                return super.onOptionsItemSelected(item)
+            }
+            R.id.logout -> {
+//                Toast.makeText(applicationContext, "로그아웃", Toast.LENGTH_SHORT).show()
+                navController.navigate(R.id.navigation_login)
+                return super.onOptionsItemSelected(item)
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
     fun getFile(): UserFile {
@@ -54,6 +82,7 @@ class MainActivity : AppCompatActivity() {
 
     fun setBottomNav(status: Boolean) {
         binding.navView.visibility = if (status) View.VISIBLE else View.GONE
+        binding.toolbar.visibility = if (status) View.VISIBLE else View.GONE
     }
 
     override fun onDestroy() {

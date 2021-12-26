@@ -1,5 +1,6 @@
 package com.callor.threedayday.data
 
+import android.util.Log
 import com.callor.threedayday.data.model.LoggedInUser
 
 /**
@@ -24,6 +25,7 @@ class LoginRepository(val dataSource: LoginDataSource) {
 
     fun logout() {
         user = null
+        Log.d("logout","bye")
         dataSource.logout()
     }
 

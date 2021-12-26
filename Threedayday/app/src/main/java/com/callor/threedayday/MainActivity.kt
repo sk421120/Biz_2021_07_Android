@@ -1,6 +1,8 @@
 package com.callor.threedayday
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -8,7 +10,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.callor.threedayday.data.LoginRepository
 import com.callor.threedayday.databinding.ActivityMainBinding
 import com.callor.threedayday.service.UserFile
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -19,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var userFile: UserFile
 
-    private lateinit var navController:NavController
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,19 +65,29 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 //        return super.onOptionsItemSelected(item)
-        when(item?.itemId){
+        when (item?.itemId) {
             R.id.setting -> {
 //                Toast.makeText(applicationContext, "세팅", Toast.LENGTH_SHORT).show()
                 navController.navigate(R.id.navigation_setting)
-                return super.onOptionsItemSelected(item)
+//                return super.onOptionsItemSelected(item)
             }
             R.id.logout -> {
 //                Toast.makeText(applicationContext, "로그아웃", Toast.LENGTH_SHORT).show()
-                navController.navigate(R.id.navigation_login)
-                return super.onOptionsItemSelected(item)
+//                userFile.remove("memo/test")
+//                navController.navigate(R.id.navigation_home)
+                setBottomNav(false)
+//                userFile.remove("memo/test")
+//                Handler(Looper.getMainLooper()).postDelayed(
+//                    { navController.navigate(R.id.navigation_login) }, 100
+//                )
+                navController.popBackStack()
+//                        navController.navigate(R.id.navigation_login)
+//
             }
-            else -> return super.onOptionsItemSelected(item)
+            else -> {}
+
         }
+        return super.onOptionsItemSelected(item)
     }
 
     fun getFile(): UserFile {
@@ -87,6 +101,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        userFile.remove("memo/test")
+//        userFile.remove("memo/test")
     }
 }

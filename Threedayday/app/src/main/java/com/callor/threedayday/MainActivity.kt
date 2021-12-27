@@ -80,9 +80,12 @@ class MainActivity : AppCompatActivity() {
 //                Handler(Looper.getMainLooper()).postDelayed(
 //                    { navController.navigate(R.id.navigation_login) }, 100
 //                )
-                navController.popBackStack()
-//                        navController.navigate(R.id.navigation_login)
-//
+//                navController.popBackStack()
+//                navController.navigate(R.id.navigation_login)
+//                val fragmentId = navController.backStack.last
+                navController.navigate(R.id.action_global_navigation_login)
+//                navController.navigate(R.id.navigation_intro)
+
             }
             else -> {}
 

@@ -1,6 +1,7 @@
 package com.callor.threedayday
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -19,6 +20,7 @@ import com.callor.threedayday.service.UserFile
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.content.DialogInterface
 import android.os.Process
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class MainActivity : AppCompatActivity() {
@@ -89,36 +91,55 @@ class MainActivity : AppCompatActivity() {
 //                val fragmentId = navController.backStack.last
 //                navController.navigate(R.id.action_global_navigation_login)
 //                navController.navigate(R.id.navigation_intro)
-                val alertDialogBuilder = AlertDialog.Builder(this)
-                alertDialogBuilder.setTitle("프로그램 종료")
-                alertDialogBuilder
-                    .setMessage("프로그램을 종료할 것입니까?")
-                    .setCancelable(false)
-                    .setPositiveButton("종료",
-                        DialogInterface.OnClickListener { dialog, id -> // 프로그램을 종료한다
-                            val pid = Process.myPid()
-                            Process.killProcess(pid) //완전종료되는것
-                            finish()
-                        })
-                    .setNegativeButton("취소",
-                        DialogInterface.OnClickListener { dialog, id -> // 다이얼로그를 취소한다
-                            dialog.cancel()
-                        })
+//                val alertDialogBuilder = AlertDialog.Builder(this)
+//                alertDialogBuilder.setTitle("프로그램 종료")
+//                alertDialogBuilder
+//                    .setMessage("프로그램을 종료할 것입니까?")
+//                    .setCancelable(false)
+//                    .setPositiveButton("종료",
+//                        DialogInterface.OnClickListener { dialog, id -> // 프로그램을 종료한다
+//                            val pid = Process.myPid()
+//                            Process.killProcess(pid) //완전종료되는것
+//                            finish()
+//                        })
+//                    .setNegativeButton("취소",
+//                        DialogInterface.OnClickListener { dialog, id -> // 다이얼로그를 취소한다
+//                            dialog.cancel()
+//                        })
 
                 // 다이얼로그 생성
-
-                // 다이얼로그 생성
-                val alertDialog: AlertDialog = alertDialogBuilder.create()
+//                val alertDialog: AlertDialog = alertDialogBuilder.create()
 
                 // 다이얼로그 보여주기
-
-                // 다이얼로그 보여주기
-                alertDialog.show()
+//                alertDialog.show()
+                alertdialog(this)
             }
             else -> {}
 
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun alertdialog(context: Context) {
+        val alertDialogBuilder = AlertDialog.Builder(context)
+        alertDialogBuilder.setTitle("프로그램 종료")
+        alertDialogBuilder.setMessage("로그아웃을 하시겠습니까?")
+            .setCancelable(false)
+            .setPositiveButton("로그아웃",
+                DialogInterface.OnClickListener { dialog, id ->
+                    userFile.remove("memo/test")
+                    val pid = Process.myPid()
+                    Process.killProcess(pid)
+                    finish()
+                })
+            .setNegativeButton("취소",
+                DialogInterface.OnClickListener { dialog, id ->
+                    dialog.cancel()
+                })
+
+        val alertDialog = alertDialogBuilder.create()
+
+        alertDialog.show()
     }
 
     fun getFile(): UserFile {
